@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   #現在サインインしてるユーザーのshowページに飛ばす
 
   def after_sign_in_path_for(resource)
-   user_path(current_user.id)
+   users_index_path(current_user.id)
   end
 
 
@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   protected
 
  #config側で「名前で認証」設定しているため、こちらでemailを許可
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
-  end
+ def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up,keys:[:email])
+ end
 end
