@@ -1,3 +1,4 @@
+<h1>Books#show</h1>
 <main>
         <p id="notice"></p>
         <div class="container px-5 px-sm-0">
@@ -46,13 +47,16 @@
     </tr>
   </thead>
   <tbody>
-      <tr>
-        <td><img src="https://bookers-level2.herokuapp.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdUFGIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--bd329d43766ea894b3d93f91fd14cca0b33a3cf8/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVZWcFZRPT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--596aecbd1e45058af6bad2ccaa755120cd0daa59/default-image.jpg"></td>
-        <td></td>
-        <td><% link_to "show","/users" %>Show</td>
-      </tr>
-  </tbody>
-</table>
+   <% @books.each do |book| %>
+   <%= link_to user_path(@user.id) do %>
+   <tr>
+   <td><%= attachment_image_tag @book.user, :profile_image, :fill, 20, 20, fallback: "no_image.jpg",size:'20x20',format: 'no_image.jpg' %></td>
+   <% end %>
+   <td><%=link_to book.title, book_path(book.id)%></td>
+   <td><%= book.body %></td>
+   </tr>
+   <% end %>
+   </table>
 
     </div>
   </div>
