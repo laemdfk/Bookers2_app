@@ -6,7 +6,7 @@ protect_from_forgery
 
  before_action :authenticate_user!
      before_action :ensure_current_user, {only: [:edit,:update,:destroy]}
-     #(ログインユーザー以外の人が情報を遷移しようとした時に制限をかける)
+     #ログインユーザー以外の遷移を防止する
 
 	def create
         @user = current_user
