@@ -1,45 +1,64 @@
 class BooksController < ApplicationController
 
+# ActionController::InvalidAuthenticityTokenの予防用コード
+protect_from_forgery
 
-  def show
-    @book = Book.find(params[:id])
-    @book_new = Book.new
-  end
 
-  def index
-    @books = Book.all
-  end
+before_action :corrent_user, only: [:edit, :destroy]
 
-  def edit
-    @book = Book.find(params[:id])
-  end
+ def index
+  @books = Book.all
+  @book = Book.new
+ end
 
-  def create
+ def create
    @book = Book.new(book_params)
-   @book.save
-    redirect_to book_path(@book),notice: "You have created book successfully."
+    #@book.user_id = current_user.id
+  if @book.save
+   redirect_to books_path(@book.id)
+
+  else
+   @books = Book.all
+    render  'index'
   end
+ end
 
-  def create
-    	@book = Book.new(book_params)
-	    @book.save
-		  redirect_to  book_path(@book.id)
-  end
+ def show
+  @book = Book.find(params[:id])
+ end
 
-  def update
-     @book = Book.find(params[:id])
-     book.update(book_params)
-     redirect_to  book_path(@book.id)
-  end
+ def edit
+ @book = Book.find(params[:id])
+ end
 
-  def destroy
-  end
-
-
-private
-    def book_params
-      params.require(:book).permit(:title, :body)
+ def updete
+   @book = Book.find(params[:id])
+     if @book.update(book_params)
+      flash[:notice] = "Book was successfully update."
+     redirect_to book_path(book.id)
+     else
+     @books = Book.all
+      render 'edit'
     end
+ end
+
+ def destroy
+     @book = Book.find(params[:id])
+     @book.destroy
+     flash[:notice]="Book was successfully destroyed."
+     redirect_to books_path
+ end
 
 
+# 以下、ストロングパラメータ/必ずラストのエンド前に。
+private
+ def book_params
+  params.require(:book).permit(:title, :body)
+ end
+
+  def corrent_user
+ @book = Book.find(params[:id])
+ @user = @book_user
+  redirect_to(books_path) unless @user==current_user
+  end
 end
