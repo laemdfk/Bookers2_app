@@ -13,7 +13,7 @@ protect_from_forgery
 		@book = Book.new(book_params)
         @book.user_id = (current_user.id)
 	    if @book.save
-		redirect_to  book_path(@book.id)
+		redirect_to users_path(@book.id)
         # redirect_to "/books/#{@book.id}"
 
         else
@@ -54,10 +54,12 @@ protect_from_forgery
     end
 
     def destroy
-        @book = Book.find(params[:id])
-        @book.destroy
-        redirect_to "/books"
+      @book = Book.find(params[:id])
+      if @book.destroy
+      flash[:notice]="Book was successfully destroyed."
+      redirect_to books_path
      end
+    end
 
 	private
 
