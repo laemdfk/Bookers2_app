@@ -1,16 +1,15 @@
 class UsersController < ApplicationController
 
-lass UsersController < ApplicationController
-  before_action :correct_user, only: [:edit]
-  def correct_user
-    user = User.find(params[:id])
-    if current_user.id != user.id
-      redirect_to user_path(current_user)
-    end
-  end
+protect_from_forgery
 
-  def home
-  end
+  # before_action :correct_user, only: [:edit]
+  # def correct_user
+  #   user = User.find(params[:id])
+  #   if current_user.id != user.id
+  #     redirect_to user_path(current_user)
+  #   end
+  # end
+
 
   def index
     @users = User.all
@@ -28,7 +27,6 @@ lass UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "User info was successfully updated"
       redirect_to user_path(@user.id)

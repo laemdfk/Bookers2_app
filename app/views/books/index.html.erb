@@ -1,14 +1,18 @@
 <h1>Books#index</h1><!--全ユーザーの本の投稿一覧-->
 
-<div class="container px-5 px-sm-0">
+<main>
+        <p id="notice"></p>
+        <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
       <h2>User info</h2>
-      <img src="https://bookers-level2.herokuapp.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdUVEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--36b1abf539ecca73b443d23b9394ac6b2f900447/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVdscGFRPT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--4a929dbc7794f3c4610ba9ba5402762ad9cd1a14/default-image.jpg"><table class="table">
-  <tbody><tr></tr>
+      <%= attachment_image_tag @user, :profile_image, :fill, 20, 20, fallback: "no_image.jpg",size:'80x80',format: 'no_image.jpg' %>
+      <table class="table">
+  <tbody>
+    <tr></tr>
   <tr>
 	  <th>name</th>
-	  <th>nanashi</th>
+	  <th></th>
   </tr>
   <tr>
 	  <th>introduction</th>
