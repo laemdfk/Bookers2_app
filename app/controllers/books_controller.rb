@@ -13,7 +13,7 @@ protect_from_forgery
 		@book = Book.new(book_params)
         @book.user_id = (current_user.id)
 	    if @book.save
-		redirect_to users_path(@book.id)
+		  redirect_to users_path(@book.id)
         # redirect_to "/books/#{@book.id}"
 
         else

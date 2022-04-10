@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-3">
       <h2>User info</h2>
-      <%= attachment_image_tag user, :profile_image, :fill, 20, 20, fallback: "no_image.jpg",size:'80x80',format: 'no_image.jpg' %>
+      <%= attachment_image_tag @user, :profile_image, :fill, 20, 20, fallback: "no_image.jpg",size:'80x80',format: 'no_image.jpg' %>
       <table class="table">
   <tbody>
     <tr></tr>
