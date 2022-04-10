@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-lass UsersController < ApplicationController
+class UsersController < ApplicationController
   before_action :correct_user, only: [:edit]
   def correct_user
     user = User.find(params[:id])
@@ -42,4 +42,6 @@ lass UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
   end
+
+ end
 end
