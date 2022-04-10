@@ -13,18 +13,17 @@ protect_from_forgery
 		@book = Book.new(book_params)
         @book.user_id = (current_user.id)
 	    if @book.save
-		redirect_to users_path(@book.id)
+		    redirect_to users_path(@book.id)
         # redirect_to "/books/#{@book.id}"
-
-        else
+      else
         @books = Book.all
         flash[:notice] = ' errors prohibited this obj from being saved:'
         render "index"
-        end
+      end
 	end
 
     def show
-        @user = current_user
+      @user = current_user
     	@book = Book.find(params[:id])
     	@book_new = Book.new
     end
