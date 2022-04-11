@@ -2,15 +2,6 @@ class UsersController < ApplicationController
 
 protect_from_forgery
 
-  # before_action :correct_user, only: [:edit]
-  # def correct_user
-  #   user = User.find(params[:id])
-  #   if current_user.id != user.id
-  #     redirect_to user_path(current_user)
-  #   end
-  # end
-
-
   def show
     #@user = User.find(params[:id])
     @books = Book.all
@@ -20,8 +11,8 @@ protect_from_forgery
   def index
     @user = current_user
     @users = User.all
-    @book = Book.new
     @books = Book.all
+    @book = Book.new
   end
 
   def edit

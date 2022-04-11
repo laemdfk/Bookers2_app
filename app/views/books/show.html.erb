@@ -2,7 +2,7 @@
 <main>
  <%= render 'book' %>
     <div class="col-md-8 offset-md-1">
-      <h2>Book detail</h2>
+      <h2>Books</h2>
       <table class="table">
   <thead>
     <tr>
@@ -19,7 +19,7 @@
             <%#= @book.user.name %>
             <% end %>
           </td>
-          <td><%= link_to @book.title, @book %></td>
+          <td><%= link_to @book.title, user_path %></td>
           <td><%= @book.body %></td>
             <td></td>
             <td></td>
