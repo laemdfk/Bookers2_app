@@ -22,7 +22,7 @@
           </td>
           <td><%= link_to @book.title, book_path %></td>
           <td><%= @book.body %></td>
-            <td><%= link_to 'Edit', edit_book_path, class: "btn btn-sm btn-success edit_book_path" %></td>
+            <td><%= link_to 'Edit', edit_book_path, class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
         </tr>
       </table>

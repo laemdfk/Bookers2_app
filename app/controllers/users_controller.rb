@@ -9,8 +9,8 @@ protect_from_forgery
   end
 
   def index
+     @users = User.all
     @user = current_user
-    @users = User.all
     @books = Book.all
     @book = Book.new
   end

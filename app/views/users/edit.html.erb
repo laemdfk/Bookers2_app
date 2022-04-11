@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
     <h2>User info</h2>
-    <form enctype="multipart/form-data" action="/users/528" accept-charset="UTF-8" method="post"><input type="hidden" name="_method" value="patch" autocomplete="off"><input type="hidden" name="authenticity_token" value="VH2RFB5QgcT0mbcqXARpF6FNRwPaEggY7EHJ-1tEYwaV-M1vaixwf80pv9nhsMWGGps7s0tS5MsZVDmbAjvxNw" autocomplete="off">
+     <%= form_for(@user, url: user_path(current_user.id)) do |f| %>
 
       <div class="form-group">
         <label for="user_name">Name</label>
@@ -27,8 +27,8 @@
 
       </div>
       </main>
-    
 
+<% end %>
 
 
 </body>

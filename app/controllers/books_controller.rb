@@ -57,7 +57,7 @@ protect_from_forgery
       @book = Book.find(params[:id])
       if @book.destroy
       flash[:notice]="Book was successfully destroyed."
-      redirect_to books_path
+      redirect_to book_path
      end
     end
 
