@@ -25,7 +25,7 @@ protect_from_forgery
 
     def show
         @user = current_user
-    	@book = Book.find(params[:id])
+    	#@book = Book.find(params[:id])
     	@book_new = Book.new
     end
 
