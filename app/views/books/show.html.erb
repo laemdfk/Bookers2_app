@@ -14,13 +14,13 @@
   <tbody>
     <table class='table'>
   		  <tr>
-          <td><%= link_to(@book.user) do %>
+          <td><%= link_to(@book) do %>
            <td><%= attachment_image_tag @user, :profile_image, :fill, 20, 20, fallback: "no_image.jpg",size:'50x50',format: 'no_image.jpg' %></td>
             <%#= @book.user.name %>
             <% end %>
           </td>
-          <td><%= link_to @book.title, user_path %></td>
-          <td><%= @book.body %></td>
+          <td><%= link_to @book, user_path %></td>
+          <td><%= @book %></td>
             <td></td>
             <td></td>
         </tr>

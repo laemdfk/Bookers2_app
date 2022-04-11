@@ -25,7 +25,7 @@ protect_from_forgery
 
     def show
         @user = current_user
-    	@book = Book.find(params[:id])
+    # 	@book = Book.find(params[:id])
     	@book_new = Book.new
     end
 
@@ -72,10 +72,9 @@ protect_from_forgery
    end
 
      def  ensure_current_user
-      @book = Book.find(params[:id])
-     if @book.user_id != current_user.id
+      #@book = Book.find(params[:id])
+     #if @book.user_id != current_user.id
         redirect_to books_path
      end
   end
 
-end

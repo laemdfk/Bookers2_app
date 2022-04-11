@@ -32,7 +32,8 @@ protect_from_forgery
 
   private
 # 以下、ストロングパラメータ/必ずラストのエンド前に。
+
   def user_params
-    params.require(:user).permit(:name, :introduction)
+    params.require(:user).permit(:name, :introduction ,:user_id)
   end
 end
