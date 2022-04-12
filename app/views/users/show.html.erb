@@ -9,32 +9,26 @@
     <tr></tr>
   </thead>
   <tbody>
+     <% @books.each do |book| %>
     <table class='table'>
   		  <tr>
           <td>
-            <%= link_to(@book.user) do %>
+             <%= link_to(@book.user) do %>
             <%= attachment_image_tag @user, :image_url, :fill, 40, 40, fallback: "default-image.jpeg",size:'50x50',format: 'default-image.jpeg' %>
             <%= link_to current_user.name, user_path(current_user) %>
-            <% end %>
           </td>
-          <td><%= link_to @book.title, book_path %></td>
-          <td><%= @book.body %></td>
+          <td><%= link_to book.title, book_path %></td>
+            <td><%= book.body %></td>
+            <% end %>
+            </td>
             <td><%= link_to 'Edit', edit_book_path, class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
-          <tr>
-          <td><a href="/users/1588">
-            <%= attachment_image_tag @user, :image_url, :fill, 40, 40, fallback: "default-image.jpeg",size:'50x50',format: 'default-image.jpeg' %>
-            nanashi
-</a>          </td>
-          <td><a href="/books/1199">hawihfeiw</a></td>
-          <td>hunilyaka happy</td>
-            <td><a class="btn btn-sm btn-success edit_book_1199" href="/books/1199/edit">Edit</a></td>
-            <td><a data-confirm="本当に消しますか？" class="btn btn-sm btn-danger destroy_book_1199" rel="nofollow" data-method="delete" href="/books/1199">Destroy</a></td>
         </tr>
+          <% end %>
       </tbody>
-        </tr>
-      </table>
+      
+    </table>
     </div>
-  </div>
-</div>
+   </div>
+ </div>
 </main>
