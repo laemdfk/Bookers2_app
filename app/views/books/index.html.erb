@@ -19,7 +19,7 @@
         <td>
           <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "default-image.jpeg",size:'50x50',format: 'default-image.jpeg' %>
      </td>
-        <td><%= link_to "book_title", users_path %></td>
+        <td><%= link_to "book_title", user_path(id: current_user) %></td>
         <td><%# books_url %></td>
       </tr>
       <% end %>
