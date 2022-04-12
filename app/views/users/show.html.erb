@@ -14,7 +14,7 @@
   		  <tr>
           <td>
              <%= link_to(@book.user) do %>
-            <%= attachment_image_tag @user, :image_url, :fill, 40, 40, fallback: "default-image.jpeg",size:'50x50',format: 'default-image.jpeg' %>
+            <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "default-image.jpeg",size:'50x50',format: 'default-image.jpeg' %>
             <%= link_to current_user.name, user_path(current_user) %>
           </td>
           <td><%= link_to book.title, book_path %></td>
@@ -22,11 +22,11 @@
             <% end %>
             </td>
             <td><%= link_to 'Edit', edit_book_path, class: "btn btn-sm btn-success" %></td>
-            <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
+            <td><%= link_to 'Destroy',book_path(book), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}" %></td>
         </tr>
           <% end %>
       </tbody>
-      
+
     </table>
     </div>
    </div>

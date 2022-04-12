@@ -9,11 +9,11 @@ protect_from_forgery
      #ログインユーザー以外の遷移を防止する
 
 	def create
-        @user = current_user
+        #@user = current_user
 		@book = Book.new(book_params)
         @book.user_id = (current_user.id)
 	    if @book.save
-		redirect_to users_path(@book.id)
+		redirect_to user_path(@book.id)
         # redirect_to "/books/#{@book.id}"
 
         else

@@ -15,7 +15,7 @@
   <tbody>
     <tr>
         <td><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "default-image.jpeg",size:'50x50',format: 'default-image.jpeg' %></td>
-        <td>nanashi</td>
+        <td><%= link_to current_user.name, user_path(current_user) %></td>
         <td><% link_to "Show",users_path %>Show</td>
       </tr>
   </tbody>
