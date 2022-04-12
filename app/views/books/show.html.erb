@@ -14,9 +14,9 @@
   <tbody>
     <table class='table'>
   		  <tr>
-          <td><%= link_to(@book) do %>
-           <td><%= attachment_image_tag @user, :profile_image, :fill, 20, 20, fallback: "no_image.jpg",size:'50x50',format: 'no_image.jpg' %></td>
-            <%#= @book.user.name %>
+           <td><%= attachment_image_tag @user, :profile_image, :fill, 20, 20, fallback: "no_image.jpg",size:'50x50',format: 'no_image.jpg' %>
+           <%= link_to(@book) do %>
+           <%= link_to current_user.name, user_path(current_user) %>
             <% end %>
           </td>
           <td><%= link_to @book, user_path %></td>
