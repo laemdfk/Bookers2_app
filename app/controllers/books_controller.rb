@@ -4,8 +4,8 @@ class BooksController < ApplicationController
 protect_from_forgery
 
 
- before_action :authenticate_user!
-     before_action :ensure_current_user, {only: [:edit,:update,:destroy]}
+#  before_action :authenticate_user!
+#      before_action :ensure_current_user, {only: [:show, :edit, :update, :destroy]}
      #ログインユーザー以外の遷移を防止する
 
 	def create
@@ -36,8 +36,13 @@ protect_from_forgery
     end
 
     def edit
-    	@book = Book.find(params[:id])
+    @book = Book.find(params[:id])
+    if @book.user == current_user
+        render "edit"
+    else
+        redirect_to books_path
     end
+end
 
 
     def update
@@ -67,15 +72,15 @@ protect_from_forgery
         params.require(:book).permit(:title, :body)
     end
 
-     def user_params
-        params.require(:user).permit(:name,:profile_image,:introduction)
+#      def user_params
+#         params.require(:user).permit(:name,:profile_image,:introduction)
+#   end
+
+    #  def  ensure_current_user
+    #   @book = Book.find(params[:id])
+    #   if @book.user_id != current_user.id
+    #     redirect_to books_path
+    # end
+    # end
    end
-
-     def  ensure_current_user
-      @book = Book.find(params[:id])
-       if @book.user_id != current_user.id
-        redirect_to books_path
-     end
-    end
-  end
-
+ 
