@@ -1,5 +1,5 @@
 <!--usersページのshowページ/投稿後に飛んでくるbook_detailページ-->
-
+<h1>users#show</h1>
 <main>
  <%= render 'user', user: @user %>
     <div class="col-md-8 offset-md-1">
@@ -14,7 +14,7 @@
   		  <tr>
           <td>
              <%= link_to(@book.user) do %>
-            <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "default-image.jpeg",size:'50x50',format: 'default-image.jpeg' %>
+            <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "default-image.jpeg",size:'80x80',format: 'default-image.jpeg' %><br 
             <%= link_to current_user.name, user_path(current_user) %>
           </td>
           <td><%= link_to book.title, book_path %></td>

@@ -10,8 +10,8 @@ protect_from_forgery
 
   def index
     @users = User.all
-    @user = current_user
-    @books = Book.all
+    @user = current_user.id
+    # @books = Book.all
     @book = Book.new
   end
 
@@ -34,6 +34,6 @@ protect_from_forgery
 # 以下、ストロングパラメータ/必ずラストのエンド前に。
 
   def user_params
-    params.require(:user).permit(:name, :introduction ,:user_id)
+    params.require(:user).permit(:name, :introduction, :user_id, :profile_image)
   end
 end

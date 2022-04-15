@@ -1,3 +1,4 @@
+<hi>users#index</hi>
 <main>
 <!--<h1>Usres</h1>-->
    <%= render 'user' %>
@@ -15,7 +16,7 @@
     <tr>
         <td><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "default-image.jpeg",size:'50x50',format: 'default-image.jpeg' %></td>
         <td><%= current_user.name %></td>
-        <td><%= link_to "Show", book_path(id: current_user) %></td>
+        <td><%= link_to "Show", book_path(:user.id) %></td>
       </tr>
   </tbody>
 </table>

@@ -9,24 +9,25 @@ protect_from_forgery
      #ログインユーザー以外の遷移を防止する
 
 	def create
-        #@user = current_user
-		@book = Book.new(book_params)
-        @book.user_id = (current_user.id)
-	    if @book.save
-		redirect_to user_path(@book.id)
-        # redirect_to "/books/#{@book.id}"
+# 	     @book = Book.new(book_params)
+#          @user = current_user
+#          @book_user.id = current_user.id
+# 	    if @book.save
+# 	        flash[:notice] ="Book was successfully created."
+# 		redirect_to user_path(@book.id)
 
-        else
-        @books = Book.all
-        flash[:notice] = ' errors prohibited this obj from being saved:'
-        render "index"
-        end
+#         else
+#         @books = Book.all
+#         flash[:notice] = ' errors prohibited this obj from being saved:'
+#         render "index"
+#         end
 	end
 
     def show
-        @user = current_user
-    # 	@book = Book.find(params[:id])
-    	  @book_new = Book.new
+    @books = Book.all
+    @user = current_user
+    #  @book = Book.find(params[:id])
+     @book_new = Book.new
     end
 
     def index
@@ -83,4 +84,3 @@ end
     # end
     # end
    end
- 
