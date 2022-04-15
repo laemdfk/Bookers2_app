@@ -10,9 +10,20 @@ import "channels"
 
 import "jquery";
 import "popper.js";
-import "bootstrap";
-import "../stylesheets/application"
+// import "bootstrap";
+// import "../stylesheets/application.scss";
+// import '../css/application.scss'
 import '@fortawesome/fontawesome-free/js/all'
+
+require("@rails/ujs").start()
+require("turbolinks").start()
+require("@rails/activestorage").start()
+require("channels")
+
+import "bootstrap";
+import "../stylesheets/application";
+
+
 
 Rails.start()
 Turbolinks.start()

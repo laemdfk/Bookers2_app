@@ -13,17 +13,19 @@
     </tr>
   </thead>
   <tbody>
+
    <tr>
     <td><%= attachment_image_tag @user, :profile_image, :fill, 50, 50, fallback: "default-image.jpeg",size:'80x80',format: 'default-image.jpeg' %>
       <%= link_to(@book) do %>
       </td>
-     <td><%= link_to current_user.name, user_path(current_user) %></td>
+     <td><%= link_to @book, user_path(current_user) %></td>
       <% end %>
-      
-      <td><%= link_to @book, user_path(current_user) %></td>
-        <td></td>
+
+      <td><%= link_to book_path(id: current_user) %></td>
+    　<td><%# @book %></td>
       <td></td>
         </tr>
+
       </table>
     </div>
   </div>

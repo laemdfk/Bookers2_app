@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+before_action :configure_permitted_parameters, if: :devise_controller?
 
 protect_from_forgery
 
@@ -32,6 +33,10 @@ protect_from_forgery
 
   private
 # 以下、ストロングパラメータ/必ずラストのエンド前に。
+
+ def book_params
+        params.require(:book).permit(:title, :body)
+    end
 
   def user_params
     params.require(:user).permit(:name, :introduction ,:user_id)

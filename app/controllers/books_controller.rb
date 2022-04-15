@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
 
-# ActionController::InvalidAuthenticityTokenの予防用コード
+before_action :configure_permitted_parameters, if: :devise_controller?
+
+# ↑ActionController::InvalidAuthenticityTokenの予防用コード
 protect_from_forgery
 
 
@@ -25,8 +27,9 @@ protect_from_forgery
 
     def show
         @user = current_user
-    # 	@book = Book.find(params[:id])
-    	  @book_new = Book.new
+        @books = Book.all
+     	#@book = Book.find(params[:id])
+    	@book_new = Book.new
     end
 
     def index
