@@ -16,12 +16,12 @@
     <% @books.each do |book| %>
     <tr>
         <td>
-          <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "default-image.jpeg",size:'50x50',format: 'default-image.jpeg' %>
+          <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "default-image.jpeg",size:'80x80',format: 'default-image.jpeg' %>
            <%#= link_to(@book) do %>
      </td>
-        <td><td><%= link_to current_user.name, user_path(current_user) %></td></td>
-        <td><%# book_url %></td>
-        <td><%= link_to @book, user_path(current_user) %></td>
+        <td><%= link_to current_user.name, user_path(current_user) %></td>
+        <td><%= book.title %></td>
+        <td><% book.body %></td>
       </tr>
       <% end %>
    </tbody>

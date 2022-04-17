@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
 
+# ActionController::InvalidAuthenticityTokenの予防用コード
 protect_from_forgery
 
   def show
-    #@user = User.find(params[:id])
+    # @user = User.find(params[:id])
     @books = Book.all
     @book = Book.new
   end

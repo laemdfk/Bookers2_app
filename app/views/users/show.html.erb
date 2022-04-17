@@ -14,15 +14,17 @@
   		  <tr>
           <td>
              <%= link_to(@book.user) do %>
-            <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "default-image.jpeg",size:'80x80',format: 'default-image.jpeg' %><br 
+            <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "default-image.jpeg",size:'80x80',format: 'default-image.jpeg' %><br />
             <%= link_to current_user.name, user_path(current_user) %>
           </td>
           <td><%= link_to book.title, book_path %></td>
             <td><%= book.body %></td>
             <% end %>
+            <td>
+              <%= link_to 'Edit', edit_book_path(@books.ids), class: "btn btn-sm btn-success" %>
+            <td>
+              <%= link_to 'Destroy',book_path(book), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}" %>
             </td>
-            <td><%= link_to 'Edit', edit_book_path(@books.ids), class: "btn btn-sm btn-success" %></td>
-            <td><%= link_to 'Destroy',book_path(book), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}" %></td>
         </tr>
           <% end %>
       </tbody>
