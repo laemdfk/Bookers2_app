@@ -63,7 +63,7 @@ end
     def destroy
       @book = Book.find(params[:id])
       if @book.destroy
-      flash[:notice]="Book was successfully destroyed."
+       flash[:notice]="Book was successfully destroyed."
       redirect_to book_path
      end
     end
@@ -75,7 +75,7 @@ end
     end
 
      def user_params
-         params.require(:user).permit(:name, :introduction, :user_id, :profile_image)
+         params.require(:user).permit(:name, :introduction, :user_id)
 　　 end
 
     # def  ensure_current_user
