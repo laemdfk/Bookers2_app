@@ -17,12 +17,19 @@
     <tr>
         <td>
           <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "default-image.jpeg",size:'80x80',format: 'default-image.jpeg' %>
-           <%#= link_to(@book) do %>
      </td>
-        <td><%= link_to current_user.name, user_path(current_user) %></td>
-        <td><%= book.title %></td>
-        <td><% book.body %></td>
+        <td><%= link_to book.title, user_path(current_user) %></td>
+        <td><%= book.body %></td>
       </tr>
+    <!--<tr>-->
+    <!--    <td>-->
+    <!--      <%#= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "default-image.jpeg",size:'80x80',format: 'default-image.jpeg' %>-->
+           <%#= link_to(@book) do %>
+    <!-- </td>-->
+    <!--    <td><%#= link_to book.title, user_path(current_user) %></td>-->
+    <!--    <td><%# book.body %></td>-->
+      <!--<td><%#= link_to current_user.name, user_path(current_user) %></td>-->
+    <!--  </tr>-->
       <% end %>
    </tbody>
     <!--<td><%#= attachment_image_tag @user, :profile_image, :fill, 50, 50, fallback: "default-image.jpeg",size:'80x80',format: 'default-image.jpeg' %>-->

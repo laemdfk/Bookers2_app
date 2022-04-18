@@ -24,7 +24,7 @@ protect_from_forgery
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice]="You have updated user successfully."
-      redirect_to user_path(current_user)
+      redirect_to book_path(current_user)
     else
       render :edit
     end

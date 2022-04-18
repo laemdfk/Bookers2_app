@@ -42,12 +42,12 @@ protect_from_forgery
     def edit
     #  @user = current_user
      @book = Book.find(params[:id])
-     if @book.save == current_user
-          flash[:notice] = "You have edited book successfully."
-          redirect_to books_path
-    else
-      render "edit"
-     end
+    # if @book.save == current_user
+    #       flash[:notice] = "You have edited book successfully."
+    #       redirect_to books_path
+    # else
+    #   render "edit"
+    # end
   end
 
 
@@ -55,7 +55,7 @@ protect_from_forgery
         @book =Book.find(params[:id])
     if @book.update(book_params)
       flash[:notice]="You have updated user successfully."
-      redirect_to book_path(current_user)
+      redirect_to users_path(current_user)
 
     else
         # @books = Book.all
