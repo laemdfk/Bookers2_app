@@ -4,14 +4,14 @@ class UsersController < ApplicationController
 protect_from_forgery
 
   def show
-    # @user = User.find(params[:id])
+  # @user = User.find(params[:id])
     @books = Book.all
     @book = Book.new
   end
 
   def index
     @users = User.all
-    @user = current_user.id
+    @user = current_user
     # @books = Book.all
     @book = Book.new
   end
