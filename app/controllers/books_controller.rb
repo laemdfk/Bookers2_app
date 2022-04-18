@@ -3,17 +3,19 @@ class BooksController < ApplicationController
 # ActionController::InvalidAuthenticityTokenの予防用コード
 protect_from_forgery
 
-  # before_action :authenticate_user!
+#   before_action :authenticate_user!
   #deviseのメソッド。ユーザがログインしているかどうかを確認し、ログインしていない場合はユーザをログインページにリダイレクトする処理
-  
+
   before_action :authenticate_current_user, {only: [:edit, :update, :destroy]}
      #ログインユーザー以外では、上記のアクションを実行できなくする処理
-     
+
 
 	def create
 #  user = current_userとする
 		@book = Book.new(book_params)
         @book.user_id = current_user.id
+        #↑ ユーザーと投稿を紐づけるためのコード
+
 	    if @book.save
         flash[:notice] = "You have creatad book successfully."
 		redirect_to  book_path(@book.id)
@@ -37,24 +39,22 @@ protect_from_forgery
         @books = Book.all
         @book = Book.new
     end
-    
-    #updateで処理したい→edit側の記述コメントアウト
-    def edit
-    #  @user = current_user
-     @book = Book.find(params[:id])
-    # if @book.save == current_user
-    #       flash[:notice] = "You have edited book successfully."
-    #       redirect_to books_path
-    # else
-    #   render "edit"
-    # end
+
+     #もし「現在のユーザであれば」editページへ遷移させる
+   def edit
+    @book = Book.find(params[:id])
+    if @book.user == current_user
+        render "edit"
+    else
+        redirect_to books_path
+    end
   end
 
 
     def update
         @book =Book.find(params[:id])
     if @book.update(book_params)
-      flash[:notice]="You have updated user successfully."
+      flash[:notice]="You have updated successfully."
       redirect_to users_path(current_user)
 
     else
@@ -81,12 +81,12 @@ protect_from_forgery
      def user_params
          params.require(:user).permit(:name, :introduction, :user_id, :profile_image_id)
      end
- 
+
 
     def authenticate_current_user
-      @book = Book.find(params[:id])
-      if @book.user_id != current_user
-        redirect_to books_path
+        @book = Book.find(params[:id])
+        if @book.user_id != current_user
+         redirect_to books_path
       end
     end
  end
