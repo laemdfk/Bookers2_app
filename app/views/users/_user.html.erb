@@ -18,11 +18,13 @@
 </tbody></table>
 
 <div class="row">
-        <%= link_to "Edit",edit_user_path(current_user.id),class:"btn btn-outline-secondary btn-block" %>
-        <span>
-          <i class="fal fa-user-cog"></i>
-        </span>
-  </div>
+  <!--link_toは doをつけることでブロック扱いにできる-->
+   <%= link_to edit_user_path(current_user.id), class:"btn btn-outline-secondary btn-block" do %>
+    <span>
+      <i class="fas fa-user-cog"></i>
+  </span>
+  <% end %>
+</div>
       <h2 class="mt-3">New book</h2>
       <form action="/books" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="Xom-MWoYJWsQ-5DSsDgYEGT2M9GZrB4Xs0m60TVVzYU6zzWH7R45fuN8ZzAl5Ajc8ckLJqdyqUr4NbadhluLpg" autocomplete="off">
   <div class="form-group">

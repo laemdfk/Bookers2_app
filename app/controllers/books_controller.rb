@@ -10,6 +10,8 @@ protect_from_forgery
      #ログインユーザー以外では、上記のアクションを実行できなくする処理
 
 
+# editページを除いて、新規投稿フォームが存在する→Book_newを定義する必要ありか？
+
 	def create
     #  current_user→現在のユーザーの意
         @user = current_user
@@ -29,10 +31,10 @@ protect_from_forgery
 	end
 
     def show
-    # @books = Book.all
-    @user = current_user
-    # @book = Book.find(params[:id])
     @book_new = Book.new
+    @books = Book.all
+    @user = current_user
+    @book = Book.find(params[:id])
     end
 
     def index

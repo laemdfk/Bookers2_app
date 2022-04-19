@@ -9,7 +9,7 @@
     <%= csp_meta_tag %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-     <script src="https://kit.fontawesome.com/192cbacd87.js" crossorigin="anonymous"></script>
+     <!--<script src="https://kit.fontawesome.com/192cbacd87.js" crossorigin="anonymous"></script>-->
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
@@ -27,12 +27,13 @@
         <ul class="navbar-nav .justify-content-end">
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-            <%= link_to "Home",books_path(current_user.id),class:"glyphicon glyphicon-home" %>
+           <li>
+           <%= link_to "Home",user_path(current_user),class:"glyphicon glyphicon-home home" %>
             <span>
               <i class="fas fa-home"></i>
-            </span>
+              </span>
             
-             <%= link_to "Users", users_path,class:"glyphicon glyphicon-book" %>
+             <%= link_to "Users", users_path,class:"glyphicon glyphicon-user" %>
             <span>
               <i class="fas fa-user"></i>
               </span>
@@ -46,9 +47,10 @@
            <span>
              <i class="fas fa-chevron-circle-right"></i>
              </span>
+            </li>
 
           <% else %>
-           <%= link_to"Home",root_path,  class:"glyphicon glyphicon-home" %>
+           <%= link_to"Home",root_path,  class:"glyphicon glyphicon-home"  %>
            <span>
               <i class="fas fa-home"></i>
              </span>
