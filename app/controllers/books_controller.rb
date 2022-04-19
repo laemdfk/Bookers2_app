@@ -6,14 +6,15 @@ protect_from_forgery
 #   before_action :authenticate_user!
   #deviseのメソッド。ユーザがログインしているかどうかを確認し、ログインしていない場合はユーザをログインページにリダイレクトする処理
 
-  before_action :authenticate_current_user, {only: [:edit, :update, :destroy]}
+  before_action :authenticate_current_user, {only: [:update, :destroy]}
      #ログインユーザー以外では、上記のアクションを実行できなくする処理
 
 
 	def create
-#  user = current_userとする
+    #  current_user→現在のユーザーの意
+        @user = current_user
 		@book = Book.new(book_params)
-        @book.user_id = current_user.id
+        @book.user.id = current_user.id
         #↑ ユーザーと投稿を紐づけるためのコード
 
 	    if @book.save
@@ -22,15 +23,15 @@ protect_from_forgery
 
         else
         @books = Book.all
-        flash[:notice] = ' errors prohibited this obj from being saved:'
+        flash[:notice] = 'errors prohibited this obj from being saved'
         render "index"
      end
 	end
 
     def show
-    @books = Book.all
+    # @books = Book.all
     @user = current_user
-    #@book = Book.find(params[:id])
+    # @book = Book.find(params[:id])
     @book_new = Book.new
     end
 
@@ -44,7 +45,7 @@ protect_from_forgery
    def edit
     @book = Book.find(params[:id])
     if @book.user == current_user
-        render "edit"
+         render "edit"
     else
         redirect_to books_path
     end
@@ -63,6 +64,7 @@ protect_from_forgery
         render "edit"
         end
     end
+
 
     def destroy
       @book = Book.find(params[:id])

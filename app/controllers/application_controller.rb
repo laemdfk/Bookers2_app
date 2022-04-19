@@ -1,11 +1,13 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+protect_from_forgery with: :exception
+#Can't verify CSRF token authenticity=CSRFトークン認証のためのコード
 
-  #現在サインインしてるユーザーのshowページに飛ばす
+  #現在サインインしてるユーザーのindexページに飛ばす
 
   def after_sign_in_path_for(resource)
-   book_path(current_user.id)
+   books_path(current_user.id)
   end
 
 
