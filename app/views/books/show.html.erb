@@ -16,7 +16,7 @@
   		  <tr>
           <td>
              <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "default-image.jpeg",size:'80x80',format: 'default-image.jpeg' %><br />
-             <%= link_to current_user.name, user_path(current_user) %>
+             <%= link_to @user.name, user_path(current_user) %>
            </td>
             <td><%= link_to @book.title, book_path %></td>
             <td><%= @book.body %></td>

@@ -1,16 +1,18 @@
 class BooksController < ApplicationController
 
-# ActionController::InvalidAuthenticityTokenの予防用コード
+# ActionController::InvalidAuthenticityToken Errorの予防用コード(CSRF対策).→プロテクトによりidが参照できなくなるので、以下追記。
 # protect_from_forgery
+
+skip_before_action :verify_authenticity_token
+#ActionController::InvalidAuthenticityToken Error対策
 
 #   before_action :authenticate_user!
   #deviseのメソッド。ユーザがログインしているかどうかを確認し、ログインしていない場合はユーザをログインページにリダイレクトする処理
 
-  before_action :authenticate_current_user, {only: [:update, :destroy]}
+  before_action :authenticate_current_user, {only: [:edit, :update, :destroy]}
      #ログインユーザー以外では、上記のアクションを実行できなくする処理
 
 
-# editページを除いて、新規投稿フォームが存在する→Book_newを定義する必要ありか？
 
 	def create
     #  current_user→現在のユーザーの意
@@ -24,19 +26,22 @@ class BooksController < ApplicationController
         flash[:notice] = "You have creatad book successfully."
 		    redirect_to  book_path(@book.id)
 
-      else
+       else
         @books = Book.all
         flash[:notice] = 'errors prohibited this obj from being saved'
         render "index"
       end
 	end
 
+
     def show
     @book_new = Book.new #editページを除き、新規投稿フォームがあるため
     @book = Book.find(params[:id])
     @books = Book.all
     @user = current_user
+    # @users = User.where(user_id: current_user.id).includes(:user).order("created_at DESC")
     end
+
 
     def index
         @user = current_user
@@ -56,7 +61,7 @@ class BooksController < ApplicationController
 
 
     def update
-        @book =Book.find(params[:id])
+        @book = Book.find(params[:id])
     if @book.update(book_params)
       flash[:notice]="You have updated successfully."
       redirect_to users_path(current_user)
@@ -79,20 +84,20 @@ class BooksController < ApplicationController
 
 
 	private
-
+	
     def book_params
         params.require(:book).permit(:title, :body)
     end
-
-     def user_params
-         params.require(:user).permit(:name, :introduction, :user_id, :profile_image_id)
-     end
-
-
-    def authenticate_current_user
+    
+     def authenticate_current_user
         @book = Book.find(params[:id])
         if @book.user_id != current_user
          redirect_to books_path
       end
     end
+
+     def user_params
+         params.require(:user).permit(:name, :introduction, :user_id, :profile_image_id)
+     end
+     
  end

@@ -8,8 +8,10 @@ class UsersController < ApplicationController
   # @book = Book.find(params[:id])
     @books = Book.all
      @book = Book.new
-     
      @user = current_user
+    @users = User.where(user_id: current_user.id).includes(:user).order("created_at DESC")
+     #↑自分が投稿したものだけを表示させるための制御文。
+     #includes(:user)=プログラムの無駄な処理を軽減 / order("created_at DESC")=新規投稿順に並べさせる
   end
 
   def index
