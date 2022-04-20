@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
 
 # ActionController::InvalidAuthenticityTokenの予防用コード
-protect_from_forgery
+# protect_from_forgery
 
 #   before_action :authenticate_user!
   #deviseのメソッド。ユーザがログインしているかどうかを確認し、ログインしていない場合はユーザをログインページにリダイレクトする処理
@@ -15,26 +15,27 @@ protect_from_forgery
 	def create
     #  current_user→現在のユーザーの意
         @user = current_user
-		@book = Book.new(book_params)
-        @book.user.id = current_user.id
+		    @book = Book.new(book_params)
+
+        @book.user_id = current_user.id
         #↑ ユーザーと投稿を紐づけるためのコード
 
 	    if @book.save
         flash[:notice] = "You have creatad book successfully."
-		redirect_to  book_path(@book.id)
+		    redirect_to  book_path(@book.id)
 
-        else
+      else
         @books = Book.all
         flash[:notice] = 'errors prohibited this obj from being saved'
         render "index"
-     end
+      end
 	end
 
     def show
-    @book_new = Book.new
+    @book_new = Book.new #editページを除き、新規投稿フォームがあるため
+    @book = Book.find(params[:id])
     @books = Book.all
     @user = current_user
-    @book = Book.find(params[:id])
     end
 
     def index
@@ -75,6 +76,7 @@ protect_from_forgery
       redirect_to book_path
      end
     end
+
 
 	private
 

@@ -7,7 +7,7 @@ protect_from_forgery with: :exception
   #現在サインインしてるユーザーのindexページに飛ばす
 
   def after_sign_in_path_for(resource)
-   books_path(current_user.id)
+    user_path(current_user.id)
   end
 
 

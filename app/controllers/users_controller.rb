@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
 
 # ActionController::InvalidAuthenticityTokenの予防用コード
-protect_from_forgery
+# protect_from_forgery
+
 
   def show
   # @book = Book.find(params[:id])
     @books = Book.all
      @book = Book.new
+     
      @user = current_user
   end
 
@@ -25,7 +27,7 @@ protect_from_forgery
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice]="You have updated user successfully."
-      redirect_to book_path(current_user)
+      redirect_to user_path(current_user)
     else
       render :edit
     end
