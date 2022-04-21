@@ -9,7 +9,7 @@ skip_before_action :verify_authenticity_token
 #   before_action :authenticate_user!
   #deviseのメソッド。ユーザがログインしているかどうかを確認し、ログインしていない場合はユーザをログインページにリダイレクトする処理
 
-  before_action :authenticate_current_user, {only: [:edit, :update, :destroy]}
+  before_action :current_user, {only: [:edit, :update, :destroy]}
      #ログインユーザー以外では、上記のアクションを実行できなくする処理
 
 
@@ -39,7 +39,7 @@ skip_before_action :verify_authenticity_token
     @book = Book.find(params[:id])
     @books = Book.all
     @user = current_user
-    # @users = User.where(user_id: current_user.id).includes(:user).order("created_at DESC")
+    #  @users = User.where(user_id: current_user.id).includes(:user).order("created_at DESC")
     end
 
 
@@ -51,12 +51,12 @@ skip_before_action :verify_authenticity_token
 
      #もし「現在のユーザであれば」editページへ遷移させる
    def edit
-    @book = Book.find(params[:id])
-    if @book.user == current_user
-         render "edit"
-    else
-        redirect_to books_path
-    end
+     @book = Book.find(params[:id])
+    # if @book.user == current_user
+    #      render "edit"
+    # else
+    #     redirect_to books_path
+    # end
   end
 
 
@@ -75,20 +75,23 @@ skip_before_action :verify_authenticity_token
 
 
     def destroy
-      @book = Book.find(params[:id])
-      if @book.destroy
-       flash[:notice]="Book was successfully destroyed."
-      redirect_to book_path
-     end
+      book = Book.find(params[:id])
+      book.destroy
+      flash[:notice]="Book was successfully destroyed."
+      redirect_to books_path
+    #   else
+    #     flash[:notice]="sorry, I couldn't delete your post."
+    #     render book_path
+    #  end
     end
 
 
 	private
-	
+
     def book_params
         params.require(:book).permit(:title, :body)
     end
-    
+
      def authenticate_current_user
         @book = Book.find(params[:id])
         if @book.user_id != current_user
@@ -99,5 +102,5 @@ skip_before_action :verify_authenticity_token
      def user_params
          params.require(:user).permit(:name, :introduction, :user_id, :profile_image_id)
      end
-     
+
  end

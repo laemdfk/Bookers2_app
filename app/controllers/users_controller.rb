@@ -3,13 +3,17 @@ class UsersController < ApplicationController
 # ActionController::InvalidAuthenticityTokenの予防用コード
 # protect_from_forgery
 
+skip_before_action :verify_authenticity_token
+#ActionController::InvalidAuthenticityToken Error対策
+
+
 
   def show
   # @book = Book.find(params[:id])
-    @books = Book.all
+    # @books = Book.all
      @book = Book.new
-     @user = current_user
-    @users = User.where(user_id: current_user.id).includes(:user).order("created_at DESC")
+     @user = User.find(params[:id])
+    @books = @user.books
      #↑自分が投稿したものだけを表示させるための制御文。
      #includes(:user)=プログラムの無駄な処理を軽減 / order("created_at DESC")=新規投稿順に並べさせる
   end
@@ -31,6 +35,7 @@ class UsersController < ApplicationController
       flash[:notice]="You have updated user successfully."
       redirect_to user_path(current_user)
     else
+      flash[:notice]="The user information couldn't be updated.Please enter your name."
       render :edit
     end
   end
