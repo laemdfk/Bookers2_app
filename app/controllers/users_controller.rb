@@ -13,9 +13,9 @@ skip_before_action :verify_authenticity_token
     # @books = Book.all
      @book = Book.new
      @user = User.find(params[:id])
-    @books = @user.books
+     @books = @user.books
      #↑自分が投稿したものだけを表示させるための制御文。
-     #includes(:user)=プログラムの無駄な処理を軽減 / order("created_at DESC")=新規投稿順に並べさせる
+     #アソシエーションで定義させている
   end
 
   def index
@@ -35,7 +35,7 @@ skip_before_action :verify_authenticity_token
       flash[:notice]="You have updated user successfully."
       redirect_to user_path(current_user)
     else
-      flash[:notice]="The user information couldn't be updated.Please enter your name."
+      flash[:notice]="The user information couldn't be updated. Please enter your name."
       render :edit
     end
   end

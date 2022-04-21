@@ -9,7 +9,7 @@ skip_before_action :verify_authenticity_token
 #   before_action :authenticate_user!
   #deviseのメソッド。ユーザがログインしているかどうかを確認し、ログインしていない場合はユーザをログインページにリダイレクトする処理
 
-  before_action :current_user, {only: [:edit, :update, :destroy]}
+  before_action :current_user, {only: [:update, :destroy]}
      #ログインユーザー以外では、上記のアクションを実行できなくする処理
 
 
@@ -68,7 +68,7 @@ skip_before_action :verify_authenticity_token
 
     else
         # @books = Book.all
-         flash[:notice]= ' errors prohibited this obj from being saved:'
+         flash[:notice]= 'errors prohibited this obj from being saved:'
         render "edit"
         end
     end

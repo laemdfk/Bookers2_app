@@ -12,13 +12,13 @@
            <%= form_with model: @book, url: book_path(@book.id), method: :patch do |f| %>
 
            <div class="form-group">
-            <%= f.label :title %><br>
+         　 <%= f.label :title %><br>
             <%= f.text_field :title, :size=>"47" %><br/>
            </div>
 
            <div class="form-group">
             <br><%= f.label :opinon %><br/>
-             <%= f.text_area :opinon, :size=>"47.5pxx62px" %><br/>
+             <%= f.text_area :body, :size=>"47.5pxx62px" %><br/>
            </div>
 
 
