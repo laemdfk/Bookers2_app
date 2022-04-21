@@ -6,5 +6,5 @@ class Book < ApplicationRecord
 	                 length: { maximum: 200}
 
 # 	attachment :profile_image
-#user側のprofile_imageを参照させる
+#user側のprofile_imageを参照させる=bookには必要ない
 end

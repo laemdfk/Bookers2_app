@@ -1,34 +1,44 @@
 <body>
-      <main>
-        <p id="notice"></p>
-        <div class="container">
-        <div class="row">
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-    <h2>User info</h2>
-     <%= form_for(@user, url: user_path(current_user.id)) do |f| %>
+  <main>
+    <p id="notice"></p>
+     <div class="container">
+      <div class="row">
+     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>User info</h2>
+        <%= form_for(@user, url: user_path(current_user.id)) do |f| %>
 
+        <div class="form-group">
+          <%= form_with model: @user, url: user_path(@user.id), method: :patch do |f| %>
+          <%= f.label :name %><br>
+          <%= f.text_field :name, :size=>"47" %><br/>
+        <!--<label for="user_name">Name</label>-->
+        <!--<input class="form-control name" type="text" value="nanashi" name="user[name]" id="user_name">-->
+        </div>
+      
+       <div class="form-group">
+         <br><%= f.label :image %><br>
+          <%= f.file_field :image %><br/>
+       
+        <!--<label for="user_image">Image</label>-->
+        <!--<input class="form-control-file user_image" accept="image/*" type="file" name="user[profile_image]" id="user_profile_image">-->
+        </div>
+      
+      
       <div class="form-group">
-        <label for="user_name">Name</label>
-        <input class="form-control name" type="text" value="nanashi" name="user[name]" id="user_name">
+        <br><%= f.label :introduction %><br/>
+         <%= f.text_area :introduction, :size=>"47.5pxx62px" %><br/>
+        <!--<label for="user_introduction">Introduction</label>-->
+        <!--<textarea class="form-control introduction" name="user[introduction]" id="user_introduction"></textarea>-->
       </div>
-     <div class="form-group">
-        <label for="user_image">Image</label>
-        <input class="form-control-file user_image" accept="image/*" type="file" name="user[profile_image]" id="user_profile_image">
-      </div>
+      
       <div class="form-group">
-        <label for="user_introduction">Introduction</label>
-        <textarea class="form-control introduction" name="user[introduction]" id="user_introduction"></textarea>
+         <br><%= f.submit 'Update user',class:"btn btn-secondary" %><br />
+        <!--<input type="submit" name="commit" value="Update User" class="btn btn-secondary" data-disable-with="Update User">-->
       </div>
-      <div class="form-group">
-        <input type="submit" name="commit" value="Update User" class="btn btn-secondary" data-disable-with="Update User">
-      </div>
-</form>  </div>
-</div>
-
-      </div>
-      </main>
-
+      
+     </div>
+    </div>
+   </main>
+  <% end %>
 <% end %>
-
-
 </body>
