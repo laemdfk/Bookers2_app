@@ -15,7 +15,11 @@
       <table class='table'>
   		  <tr>
           <td>
-             <%#= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "default-image.jpeg",size:'80x80',format: 'default-image.jpeg' %><br />
+        <% if @user.image.attached? %>
+         <%= profile_image_tag user.image, size: "100x100" %><br />
+          <% else %>
+         <%= image_tag 'no_image.jpeg', size: "100x100" %><br />
+          <% end %>
              <%= link_to @user.name, user_path(current_user) %>
            </td>
             <td><%= link_to @book.title, book_path %></td>

@@ -64,7 +64,7 @@ skip_before_action :verify_authenticity_token
         @book = Book.find(params[:id])
     if @book.update(book_params)
       flash[:notice]="You have updated successfully."
-      redirect_to users_path(current_user)
+      redirect_to book_path(@book.id)
 
     else
         # @books = Book.all
