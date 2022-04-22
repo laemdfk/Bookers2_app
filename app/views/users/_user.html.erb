@@ -4,12 +4,11 @@
     <div class="col-md-3">
       <h2>User info</h2>
      <% if @user.image.attached? %>
-         <%= profile_image_tag user.image, size: "100x100" %>
+         <%= image_tag user.image, size: "100x100" %>
        <% else %>
-         <%= image_tag 'no_image.jpeg', size: "100x100" %>
+         <%= image_tag 'default-image.jpeg', size: "100x100" %>
       <% end %>
       <table class="table">
-<table class="table">
   <tbody>
     <tr></tr>
   <tr>

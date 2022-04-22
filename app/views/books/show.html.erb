@@ -15,8 +15,8 @@
       <table class='table'>
   		  <tr>
           <td>
-        <% if @user.image.attached? %>
-         <%= profile_image_tag user.image, size: "100x100" %><br />
+          <% if @user.image.attached? %>
+           <%= profile_image_tag user.image, size: "100x100" %><br />
           <% else %>
          <%= image_tag 'no_image.jpeg', size: "100x100" %><br />
           <% end %>
@@ -24,10 +24,10 @@
            </td>
             <td><%= link_to @book.title, book_path %></td>
             <td><%= @book.body %></td>
-            
+
             <% if @book.user_id == current_user.id %>
              <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %><td>
-             <td><%= link_to 'Destroy',book_path(@book), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %></td> 
+             <td><%= link_to 'Destroy',book_path(@book), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %></td>
             <% end %>
           </tr>
         <%# end %>
