@@ -35,7 +35,7 @@ skip_before_action :verify_authenticity_token
       flash[:notice]="You have updated user successfully."
       redirect_to user_path(current_user)
     else
-      flash[:notice]="The user information couldn't be updated. Please enter your name."
+      # flash[:notice]="The user information couldn't be updated. Please enter your name."
       render :edit
     end
   end

@@ -3,16 +3,15 @@
     <p id="notice"></p>
      <div class="container">
       <div class="row">
-          <% if @user.errors.any? %>
- <div class="error_box">
-  <h4><%= @uesr.errors.count %>errors prohibited this book from being saved.</h4>
-   <ul>
-    <% @user.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-   </ul>
- </div>
-<% end %>
+         <% if @user.errors.any? %>
+         <h4><%= @user.errors.count %>errors prohibited this book from being saved.</h4>
+   　　　　<ul>
+   　　　　　 <% @user.errors.full_messages.each do |message| %>
+    　　　<li><%= message %></li>
+    　　　<% end %>
+   　　　</ul>
+ 　　　　</div>
+　　<% end %>
 
      <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h2>User info</h2>

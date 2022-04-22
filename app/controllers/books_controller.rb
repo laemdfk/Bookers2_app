@@ -28,7 +28,7 @@ skip_before_action :verify_authenticity_token
 
        else
         @books = Book.all
-        flash[:notice] = 'errors prohibited this obj from being saved'
+        flash[:notice] = 'errors prohibited this obj from being saved.Please,enter the content.'
         render "index"
       end
 	end
