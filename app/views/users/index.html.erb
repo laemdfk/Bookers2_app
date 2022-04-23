@@ -1,7 +1,7 @@
 <hi>users#index</hi>
 <main>
 <!--<h1>Usres</h1>-->
-   <%= render 'user' %>
+   <%= render 'user', user: @user %>
     <div class="col-md-8 offset-md-1">
       <h2>Users</h2>
       <table class="table table-hover table-inverse">
@@ -15,13 +15,13 @@
   <tbody>
     <% @users.each do |user| %>
     <tr>
-        <td> 
-        <% if @user.image.attached? %>
-         <%= profile_image_tag user.image, size: "80x80" %>
+        <td>
+        <% if @user.profile_image.attached? %>
+         <%= image_tag  user.profile_image, size: "80x80" %>
        <% else %>
          <%= image_tag 'no_image.jpeg', size: "80x80" %>
       <% end %>
-       </td> 
+       </td>
         <td><%= user.name %></td>
         <td><%= link_to "Show", user_path(user.id) %></td>
       </tr>

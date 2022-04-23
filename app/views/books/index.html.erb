@@ -1,7 +1,7 @@
 <h4>Books#index</h4><!--全ユーザーの本の投稿一覧-->
 
 <main>
-   <%= render 'book' %>
+   <%= render 'book', user: @user %>
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
       <table class="table table-hover table-inverse">
@@ -18,12 +18,12 @@
       <tr>
         <td><%= link_to user_path(@user.id) do %>
         <td>
-        <% if @user.image.attached? %>
-         <%= profile_image_tag user.image, size: "80x80" %>
+        <% if @user.profile_image.attached? %>
+         <%= image_tag @user.profile_image, size: "80x80" %>
        <% else %>
          <%= image_tag 'no_image.jpeg', size: "80x80" %>
       <% end %>
-       </td> 
+       </td>
           <% end %>
         </td>
          <td><%= link_to book.title, book_path(book.id) %></td>

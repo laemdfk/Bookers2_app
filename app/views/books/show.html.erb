@@ -3,7 +3,7 @@
 <h4>Books#show</h4>
 <!--現在ログイン中のユーザーかつ、投稿者であればデータを編集・消去できるようにする-->
 <main>
- <%= render 'book' %>
+ <%= render 'book', user: @user %>
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
       <table class="table">
@@ -15,8 +15,8 @@
       <table class='table'>
   		  <tr>
           <td>
-          <% if @user.image.attached? %>
-           <%= profile_image_tag user.image, size: "100x100" %><br />
+          <% if @user.profile_image.attached? %>
+           <%= image_tag @user.profile_image, size: "100x100" %><br />
           <% else %>
          <%= image_tag 'no_image.jpeg', size: "100x100" %><br />
           <% end %>
