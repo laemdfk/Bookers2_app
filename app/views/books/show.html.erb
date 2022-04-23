@@ -20,7 +20,7 @@
           <% else %>
          <%= image_tag 'no_image.jpeg', size: "100x100" %><br />
           <% end %>
-             <%= link_to @user.name, user_path(@user.id) %>
+             <%= link_to @book.user.name, user_path(@book.user) %>
            </td>
             <td><%= link_to @book.title, book_path %></td>
             <td><%= @book.body %></td>
