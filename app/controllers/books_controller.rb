@@ -17,7 +17,7 @@ skip_before_action :verify_authenticity_token
 	def create
     #  current_user→現在のユーザーの意
         @user = current_user
-		    @book = Book.new(book_params)
+		@book = Book.new(book_params)
 
         @book.user_id = current_user.id
         #↑ ユーザーと投稿を紐づけるためのコード
@@ -28,7 +28,7 @@ skip_before_action :verify_authenticity_token
 
        else
         @books = Book.all
-        flash[:notice] = 'errors prohibited this obj from being saved.Please,enter the content.'
+        # flash[:notice] = 'errors prohibited this obj from being saved.Please,enter the content.'
         render "index"
       end
 	end
@@ -37,9 +37,9 @@ skip_before_action :verify_authenticity_token
     def show
     @book_new = Book.new #editページを除き、新規投稿フォームがあるため
     @book = Book.find(params[:id])
-    @books = Book.all
+    # @books = Book.all
     @user = current_user
-    #  @users = User.where(user_id: current_user.id).includes(:user).order("created_at DESC")
+# 　  @users = User.find(params[:id])
     end
 
 

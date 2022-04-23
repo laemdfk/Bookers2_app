@@ -1,3 +1,12 @@
+ <% if @user.errors.any? %>
+         <h4><%= @user.errors.count %>errors prohibited this book from being saved.</h4>
+   　　　　<ul>
+   　　　　　 <% @user.errors.full_messages.each do |message| %>
+    　　　<li><%= message %></li>
+    　　　<% end %>
+   　　　</ul>
+ 　　　　</div>
+　　<% end %>
 <p id="notice"></p>
  <div class="container px-5 px-sm-0">
   <div class="row">
@@ -13,11 +22,11 @@
     <tr></tr>
   <tr>
 	  <th>name</th>
-	  <th><%= current_user.name %></th>
+	  <th><%= @user.name %></th>
   </tr>
   <tr>
 	  <th>introduction</th>
-	  <th><%= current_user.introduction %></th>
+	  <th><%= @user.introduction %></th>
   </tr>
 </tbody></table>
 

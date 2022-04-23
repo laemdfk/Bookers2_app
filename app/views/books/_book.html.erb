@@ -1,3 +1,13 @@
+<% if @book.errors.any? %>
+   <div class="error_box">
+     <h3><%= @book.errors.count %>errors prohibited this book from being saved.</h3>
+   <ul>
+     <% @book.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+   </ul>
+ </div>
+<% end %>
 <p id="notice"></p>
   <div class="container px-5 px-sm-0">
   <div class="row">
@@ -28,7 +38,10 @@
   </span>
   <% end %>
 </div>
-      <h2 class="mt-3">New book</h2>
+
+
+ <h2 class="mt-3">New book</h2>
+      
       <form action="/books" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="Xom-MWoYJWsQ-5DSsDgYEGT2M9GZrB4Xs0m60TVVzYU6zzWH7R45fuN8ZzAl5Ajc8ckLJqdyqUr4NbadhluLpg" autocomplete="off">
   <div class="form-group">
     <label for="book_title">Title</label>
