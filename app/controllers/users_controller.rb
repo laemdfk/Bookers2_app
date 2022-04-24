@@ -24,13 +24,13 @@ skip_before_action :verify_authenticity_token
     @new_book = Book.new
   end
 
-  def edit
+  def edit #テスト的には、こっちで制御してほしい？→view側の制御も残す。
     @user = User.find(params[:id])
-    # if @user == current_user
-    #       render "edit"
-    # else
-    #     redirect_to user_path(current_user)
-    # end
+    if @user == current_user
+          render "edit"
+    else
+        redirect_to user_path(current_user)
+    end
   end
 
   def update
@@ -39,7 +39,6 @@ skip_before_action :verify_authenticity_token
       flash[:notice]="You have updated user successfully."
       redirect_to user_path(current_user)
     else
-      # flash[:notice]="The user information couldn't be updated. Please enter your name."
       render :edit
     end
   end

@@ -28,7 +28,6 @@ skip_before_action :verify_authenticity_token
 
        else
         @books = Book.all
-        # flash[:notice] = 'errors prohibited this obj from being saved.Please,enter the content.'
         render "index"
       end
 	end
@@ -69,7 +68,6 @@ skip_before_action :verify_authenticity_token
 
     else
         # @books = Book.all
-        #  flash[:notice]= 'errors prohibited this obj from being saved:'
         render "edit"
         end
     end
@@ -80,10 +78,6 @@ skip_before_action :verify_authenticity_token
       book.destroy
       flash[:notice]="Book was successfully destroyed."
       redirect_to books_path
-    #   else
-    #     flash[:notice]="sorry, I couldn't delete your post."
-    #     render book_path
-    #  end
     end
 
 

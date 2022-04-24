@@ -22,7 +22,15 @@ class User < ApplicationRecord
  end
 
 
+# def get_image
+#     if image.attached?
+#       image
+#     else
+#       'no_image.jpg'
+#     end
+# end
 
+# 特定の処理を名前で呼び出すことができる処理
 
 
 
