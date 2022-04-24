@@ -1,4 +1,13 @@
 <hi>users#index</hi>
+<% if @new_book.errors.any? %>
+         <h4><%= @new_book.errors.count %>errors prohibited this book from being saved.</h4>
+   　　　　<ul>
+   　     <% @new_book.errors.full_messages.each do |message| %>
+    　　　<li><%= message %></li>
+    　　　<% end %>
+   　　　</ul>
+ 　　　　</div>
+　　<% end %>
 <main>
 <!--<h1>Usres</h1>-->
    <%= render 'user', user: @user %>
@@ -17,7 +26,7 @@
     <tr>
         <td>
         <% if @user.profile_image.attached? %>
-         <%= image_tag  user.profile_image, size: "80x80" %>
+         <%= image_tag @user.profile_image, size: "80x80" %>
        <% else %>
          <%= image_tag 'no_image.jpeg', size: "80x80" %>
       <% end %>

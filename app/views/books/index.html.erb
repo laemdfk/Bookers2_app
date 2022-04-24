@@ -1,5 +1,13 @@
 <h4>Books#index</h4><!--全ユーザーの本の投稿一覧-->
-
+<% if @new_book.errors.any? %>
+         <h4><%= @new_book.errors.count %>errors prohibited this book from being saved.</h4>
+   　　　　<ul>
+   　     <% @new_book.errors.full_messages.each do |message| %>
+    　　　<li><%= message %></li>
+    　　　<% end %>
+   　　　</ul>
+ 　　　　</div>
+　　<% end %>
 <main>
    <%= render 'book', user: @user %>
     <div class="col-md-8 offset-md-1">
@@ -16,12 +24,13 @@
   <tbody>
     <% @books.each do |book| %>
       <tr>
-        <td><%= link_to user_path(@user.id) do %>
+        
         <td>
+         <%= link_to books_path do %>
         <% if @user.profile_image.attached? %>
-         <%= image_tag @user.profile_image, size: "80x80" %>
+         <%= image_tag @user.profile_image, size: "100x100" %>
        <% else %>
-         <%= image_tag 'no_image.jpeg', size: "80x80" %>
+         <%= image_tag 'no_image.jpeg', size: "100x100" %>
       <% end %>
        </td>
           <% end %>

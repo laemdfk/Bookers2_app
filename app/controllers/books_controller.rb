@@ -9,7 +9,7 @@ skip_before_action :verify_authenticity_token
 #   before_action :authenticate_user!
   #deviseのメソッド。ユーザがログインしているかどうかを確認し、ログインしていない場合はユーザをログインページにリダイレクトする処理
 
-  before_action :current_user, {only: [:update, :destroy]}
+  before_action :current_user, {only: [:edit, :update, :destroy]}
      #ログインユーザー以外では、上記のアクションを実行できなくする処理
 
 
@@ -17,14 +17,14 @@ skip_before_action :verify_authenticity_token
 	def create
     #  current_user→現在のユーザーの意
         @user = current_user
-		@book = Book.new(book_params)
+		@new_book = Book.new(book_params)
 
-        @book.user_id = current_user.id
+        @new_book.user_id = current_user.id
         #↑ ユーザーと投稿を紐づけるためのコード
 
-	    if @book.save
+	    if @new_book.save
         flash[:notice] = "You have creatad book successfully."
-		    redirect_to  book_path(@book.id)
+		    redirect_to  book_path(@new_book.id)
 
        else
         @books = Book.all
@@ -35,10 +35,10 @@ skip_before_action :verify_authenticity_token
 
 
     def show
-    @book_new = Book.new #editページを除き、新規投稿フォームがあるため
+    @new_book = Book.new #editページを除き、新規投稿フォームがあるため
     @book = Book.find(params[:id])
     # @books = Book.all
-    @user = current_user
+    @user = @book.user
 # 　  @users = User.find(params[:id])
     end
 
@@ -46,7 +46,8 @@ skip_before_action :verify_authenticity_token
     def index
         @user = current_user
         @books = Book.all
-        @book = Book.new
+        @new_book = Book.new
+        # @book = Book.find(params[:id])
     end
 
      #もし「現在のユーザであれば」editページへ遷移させる

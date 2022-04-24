@@ -1,20 +1,10 @@
-<% if @book.errors.any? %>
-   <div class="error_box">
-     <h3><%= @book.errors.count %>errors prohibited this book from being saved.</h3>
-   <ul>
-     <% @book.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-   </ul>
- </div>
-<% end %>
 <p id="notice"></p>
   <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
       <h2>User info</h2>
-       <% if user.profile_image.attached? %>
-         <%= image_tag user.profile_image, size: "100x100" %>
+       <% if @user.profile_image.attached? %>
+         <%= image_tag @user.profile_image, size: "100x100" %>
        <% else %>
          <%= image_tag 'default-image.jpeg', size: "100x100" %>
       <% end %>
@@ -23,11 +13,11 @@
     <tr></tr>
   <tr>
 	  <th>name</th>
-	  <th><%= @user.name %></th>
+	  <th><%= user.name %></th>
   </tr>
   <tr>
 	  <th>introduction</th>
-	  <th><%= @user.introduction %></th>
+	  <th><%= user.introduction %></th>
   </tr>
 </tbody></table>
 
@@ -40,19 +30,30 @@
 </div>
 
 
- <h2 class="mt-3">New book</h2>
-      
-      <form action="/books" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="Xom-MWoYJWsQ-5DSsDgYEGT2M9GZrB4Xs0m60TVVzYU6zzWH7R45fuN8ZzAl5Ajc8ckLJqdyqUr4NbadhluLpg" autocomplete="off">
+<h2 class="mt-3">New book</h2>
+ <%= form_for(@new_book) do |f| %>
+<!--<form action="/books" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="Xom-MWoYJWsQ-5DSsDgYEGT2M9GZrB4Xs0m60TVVzYU6zzWH7R45fuN8ZzAl5Ajc8ckLJqdyqUr4NbadhluLpg" autocomplete="off">-->
+ 
   <div class="form-group">
-    <label for="book_title">Title</label>
-    <input class="form-control book_title" type="text" name="book[title]" id="book_title">
+    <%= f.label :title %><br>
+          <%= f.text_field :title %><br/>
+    <!--<label for="book_title">Title</label>-->
+    <!--<input class="form-control book_title" type="text" name="book[title]" id="book_title">-->
   </div>
+  
   <div class="form-group">
-    <label for="book_opinion">Opinion</label>
-    <textarea class="form-control book_body" name="book[body]" id="book_body"></textarea>
+     <br><%= f.label :opinion %><br/>
+         <%= f.text_area :body %><br/>
+    <!--<label for="book_opinion">Opinion</label>-->
+    <!--<textarea class="form-control book_body" name="book[body]" id="book_body"></textarea>-->
   </div>
+  
   <div class="form-group">
-    <input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book">
+    <br><%= f.submit 'Create Book',class:"btn btn-success" %><br />
+    <!--<input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book">-->
   </div>
-</form>
-    </div>
+  
+  
+ </form>
+ <% end %>
+</div>
