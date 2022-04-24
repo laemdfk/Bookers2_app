@@ -6,7 +6,6 @@ class UsersController < ApplicationController
 skip_before_action :verify_authenticity_token
 #ActionController::InvalidAuthenticityToken Error対策
 
- before_action :current_user, {only: [:edit, :update]}
 
   def show
   # @book = Book.find(params[:id])
@@ -30,7 +29,7 @@ skip_before_action :verify_authenticity_token
     # if @user == current_user
     #       render "edit"
     # else
-    #     redirect_to user_path
+    #     redirect_to user_path(current_user)
     # end
   end
 
@@ -50,6 +49,7 @@ skip_before_action :verify_authenticity_token
 # 以下、ストロングパラメータ/必ずラストのエンド前に。
 
   def user_params
-    params.require(:user).permit(:name, :introduction, :user_id, :profile_image)
+    params.require(:user).permit(:name, :introduction, :profile_image)
+    #user_id 元々勝手に入ってくれる。記述しなくて問題なし
   end
 end

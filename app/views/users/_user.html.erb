@@ -3,10 +3,10 @@
   <div class="row">
     <div class="col-md-3">
       <h2>User info</h2>
-     <% if @user.profile_image.attached? %>
+      <% if @user.profile_image.attached? %>
          <%= image_tag @user.profile_image, size: "100x100" %>
-       <% else %>
-         <%= image_tag 'default-image.jpeg', size: "100x100" %>
+      <% else %>
+         <%= image_tag 'no_image.jpg', size: "100x100" %>
       <% end %>
       <table class="table">
   <tbody>
@@ -19,42 +19,53 @@
 	  <th>introduction</th>
 	  <th><%= user.introduction %></th>
   </tr>
-</tbody></table>
+ </tbody>
+</table>
 
+<!--Editページへの遷移制限(他人のユーザー編集画面に飛べなくする)-->
+
+ <!--link_toは doをつけることでブロック扱いにできる-->
 <div class="row">
-  <!--link_toは doをつけることでブロック扱いにできる-->
-   <%= link_to edit_user_path(current_user.id), class:"btn btn-outline-secondary btn-block" do %>
-    <span>
-      <i class="fas fa-user-cog"></i>
-  </span>
-  <% end %>
+    <% if @user.id == current_user.id %>
+      <%= link_to edit_user_path(current_user.id), class:"btn btn-outline-secondary btn-block" do %>
+       <span class="fas fa-user-cog"></span>
+      <% end %>
+      <%#= link_to "", "/users/edit", class:"btn btn-outline-secondary btn-block" do %>
+      <!--↑no method error起こしたやつ。urlとnameの同時実装はできない？-->
+
+    <% else %>
+      <%= link_to books_path, class:"btn btn-outline-secondary btn-block" do %>
+       <span class="fas fa-user-cog"></span>
+      <% end %>
+    <% end %>
+
 </div>
 
 
       <h2 class="mt-3">New book</h2>
  <%= form_for(@new_book) do |f| %>
 <!--<form action="/books" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="Xom-MWoYJWsQ-5DSsDgYEGT2M9GZrB4Xs0m60TVVzYU6zzWH7R45fuN8ZzAl5Ajc8ckLJqdyqUr4NbadhluLpg" autocomplete="off">-->
- 
+
   <div class="form-group">
     <%= f.label :title %><br>
           <%= f.text_field :title %><br/>
     <!--<label for="book_title">Title</label>-->
     <!--<input class="form-control book_title" type="text" name="book[title]" id="book_title">-->
   </div>
-  
+
   <div class="form-group">
      <br><%= f.label :opinion %><br/>
          <%= f.text_area :body %><br/>
     <!--<label for="book_opinion">Opinion</label>-->
     <!--<textarea class="form-control book_body" name="book[body]" id="book_body"></textarea>-->
   </div>
-  
+
   <div class="form-group">
     <br><%= f.submit 'Create Book',class:"btn btn-success" %><br />
     <!--<input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book">-->
   </div>
-  
-  
+
+
  </form>
  <% end %>
 </div>

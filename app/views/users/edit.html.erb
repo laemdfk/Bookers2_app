@@ -16,10 +16,15 @@
      <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h2>User info</h2>
 
-        <%= form_for(@user, url: user_path(current_user.id)) do |f| %>
+        <%#= form_for(@user, url: user_path(current_user.id)) do |f| %>
+        
+        <!--form_withはform_with〜endまでの間で認識される-->
+        <!--divなどで区切ると、ActiveSupport::MessageVerifier::InvalidSignatureを誘発する-->
+        
+        <%= form_with model: @user, url: user_path(@user.id), method: :patch do |f| %>
 
         <div class="form-group">
-          <%= form_with model: @user, url: user_path(@user.id), method: :patch do |f| %>
+        
           <%= f.label :name %><br>
           <%= f.text_field :name, :size=>"47" %><br/>
         <!--<label for="user_name">Name</label>-->
@@ -27,9 +32,8 @@
         </div>
 
        <div class="form-group">
-         <br><%= f.label :image %><br>
-          <%= f.file_field :user_profile_image %><br/>
-
+         <br><%= f.label :profile_image %><br>
+          <%= f.file_field :profile_image, accept: "image/*" %><br/>
         <!--<label for="user_image">Image</label>-->
         <!--<input class="form-control-file user_image" accept="image/*" type="file" name="user[profile_image]" id="user_profile_image">-->
         </div>
@@ -46,10 +50,10 @@
          <br><%= f.submit 'Update User',class:"btn btn-secondary" %><br />
         <!--<input type="submit" name="commit" value="Update User" class="btn btn-secondary" data-disable-with="Update User">-->
       </div>
-
+     <% end %>
      </div>
     </div>
    </main>
-  <% end %>
-<% end %>
+
+<%# end %>
 </body>
