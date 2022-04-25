@@ -29,7 +29,7 @@ skip_before_action :verify_authenticity_token
     if @user == current_user
           render "edit"
     else
-        redirect_to user_path(current_user)
+        redirect_to user_path(current_user.id)
     end
   end
 

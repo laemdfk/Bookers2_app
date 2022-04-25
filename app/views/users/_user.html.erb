@@ -3,8 +3,8 @@
   <div class="row">
     <div class="col-md-3">
       <h2>User info</h2>
-      <% if @user.profile_image.attached? %>
-         <%= image_tag @user.profile_image, size: "100x100" %>
+      <% if user.profile_image.attached? %>
+         <%= image_tag user.profile_image, size: "100x100" %>
       <% else %>
          <%= image_tag 'no_image.jpg', size: "100x100" %>
       <% end %>
@@ -27,15 +27,12 @@
  <!--link_toは doをつけることでブロック扱いにできる-->
  <!--view版　Editページへの遷移制限(他人のユーザー編集画面に飛べなくする)-->
   <div class="row">
-　　<% if @user.id == current_user.id %>
-      　<%= link_to edit_user_path(current_user.id), class:"btn btn-outline-secondary btn-block" do %>
+　　 <% if @user.id == current_user.id %>
+      　<%= link_to edit_user_path(@user), class:"btn btn-outline-secondary btn-block" do %>
        　<span class="fas fa-user-cog"></span>
     　<% end %>
-      <%#= link_to "", "/users/edit", class:"btn btn-outline-secondary btn-block" do %>
-      <!--↑no method error起こしたやつ。urlとnameの同時実装はできない？-->
-
    　 <% else %>
-      　<%= link_to user_path(current_user.id), class:"btn btn-outline-secondary btn-block" do %>
+      　<%= link_to edit_user_path(user.id), class:"btn btn-outline-secondary btn-block" do %>
       　<span class="fas fa-user-cog"></span>
      <% end %>
     <% end %>
