@@ -1,0 +1,49 @@
+<h4>Books#index</h4><!--全ユーザーの本の投稿一覧-->
+<% if @new_book.errors.any? %>
+         <h4><%= @new_book.errors.count %>errors prohibited this book from being saved.</h4>
+   　　　　<ul>
+   　     <% @new_book.errors.full_messages.each do |message| %>
+    　　　<li><%= message %></li>
+    　　　<% end %>
+   　　　</ul>
+ 　　　　</div>
+<% end %>
+
+<body>
+ <main>
+  <%= render 'book', user: @user %>
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+        <table class="table table-hover table-inverse">
+          <thead>
+            <tr>
+             <th></th>
+             <th>Title</th>
+             <th>Opinion</th>
+             <th colspan="3"></th>
+             </tr>
+           </thead>
+            <tbody>
+              <% @books.each do |book| %>
+               <tr>
+                 <td>
+                   <%= link_to user_path(book.user) do %> 
+                    <% if @user.profile_image.attached? %>
+                      <%= image_tag @user.profile_image, size: "100x100" %>
+                    <% else %>
+                      <%= image_tag 'no_image.jpeg', size: "100x100" %>
+                    <% end %>
+                  </td>
+                  <% end %>
+                </td>
+                <td><%= link_to book.title, book_path(book.id) %></td>
+                <td><%= book.body %></td>
+                </tr>
+             <% end %>
+           </tbody>
+        </table>
+      </div>
+     </div>
+   </div>
+  </main>
+</body>

@@ -1,0 +1,45 @@
+<hi>users#index</hi>
+<% if @new_book.errors.any? %>
+         <h4><%= @new_book.errors.count %>errors prohibited this book from being saved.</h4>
+   　　　　<ul>
+   　     <% @new_book.errors.full_messages.each do |message| %>
+    　　　<li><%= message %></li>
+    　　　<% end %>
+   　　　</ul>
+ 　　　　</div>
+　　<% end %>
+<main>
+<!--<h1>Usres</h1>-->
+   <%= render 'user', user: @user %>
+    <div class="col-md-8 offset-md-1">
+      <h2>Users</h2>
+      <table class="table table-hover table-inverse">
+  <thead>
+    <tr>
+      <th>image</th>
+      <th>name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+        <td>
+        <% if @user.profile_image.attached? %>
+         <%= image_tag @user.profile_image, size: "80x80" %>
+       <% else %>
+         <%= image_tag 'no_image.jpeg', size: "80x80" %>
+      <% end %>
+       </td>
+        <td><%= user.name %></td>
+        <td><%= link_to "Show", user_path(user.id) %></td>
+      </tr>
+      <tr></tr>
+    <% end %>
+  </tbody>
+</table>
+    </div>
+  </div>
+</div>
+</main>
+

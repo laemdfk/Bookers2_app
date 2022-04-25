@@ -1,0 +1,58 @@
+<p id="notice"></p>
+ <div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <h2>User info</h2>
+       <% if @user.profile_image.attached? %>
+         <%= image_tag @user.profile_image, size: "100x100" %>
+       <% else %>
+         <%= image_tag 'no_image.jpg', size: "100x100" %>
+       <% end %>
+      <table class="table">
+       <tbody>
+        <tr></tr>
+        <tr>
+	      <th>name</th>
+	      <th><%= user.name %></th>
+        </tr>
+        <tr>
+	     <th>introduction</th>
+	     <th><%= user.introduction %></th>
+       </tr>
+      </tbody>
+     </table>
+
+
+   <div class="row">
+    <% if @user.id == current_user.id %>
+      <%= link_to edit_user_path(current_user.id), class:"btn btn-outline-secondary btn-block" do %>
+        <span>
+         <i class="fas fa-user-cog"></i>
+        </span>
+      <% end %>
+    <% else %>
+       <%= link_to edit_user_path(@user.id), class:"btn btn-outline-secondary btn-block" do %>
+        　<span class="fas fa-user-cog"></span>
+      　<% end %>
+    <% end %>
+   </div>
+
+
+<h2 class="mt-3">New book</h2>
+  <%= form_for(@new_book) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %><br/>
+  </div>
+
+  <div class="form-group">
+    <br><%= f.label :opinion %><br/>
+        <%= f.text_area :body %><br/>
+  </div>
+
+  <div class="form-group">
+    <br><%= f.submit 'Create Book',class:"btn btn-success" %><br />
+  </div>
+ <% end %>
+</div>

@@ -1,0 +1,49 @@
+<!--<h4>Books#edit</h4>-->
+<!--bookのedit画面=本の編集画面/投稿データの編集画面-->
+
+<body>
+ <main>
+  <p id="notice"></p>
+    <% if @book.errors.any? %>
+   <div class="error_box">
+     <h3><%= @book.errors.count %>errors prohibited this book from being saved.</h3>
+   <ul>
+     <% @book.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+   </ul>
+ </div>
+<% end %>
+
+   <div class="container">
+     <div class="row">
+       <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  	     	<h1>Editing Book</h1>
+
+           <%= form_with model: @book, url: book_path(@book.id), method: :patch do |f| %>
+
+           <div class="form-group">
+         　 <br> <%= f.label :title %><br />
+            <%= f.text_field :title, :size=>"47" %><br/>
+           </div>
+
+           <div class="form-group">
+            <br><%= f.label :opinon %><br/>
+             <%= f.text_area :body, :size=>"47.5pxx62px" %><br/>
+           </div>
+
+
+          <div class="form-group">
+            <br><%= f.submit 'Update Book',class:"btn btn-success" %><br />
+           </div>
+
+      <div class="menu">
+       <%= link_to "Show", book_path(@book) %>
+        |
+       <%= link_to "Back", books_path %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+ <main>
+</body>

@@ -1,16 +1,107 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Traveler</title>
+    <title>Bookers2</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
+    <!--↑クロスサイトリクエストフォージェリ=CSRF(悪意あるリクエストを投げ、ユーザが意図しないアプリケーション操作をさせる攻撃)の予防用。認証用のトークンを差し込むためのコード-->
+
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
-</html>
+ <body>
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+     <div class="container">
+      <a class="navbar-brand" href="/"><span>Bookers</span></a>
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+      <div class="row">
+       <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav .justify-content-end">
+          <ul class="nav navbar-nav navbar-right">
+
+            <!--glyphicon = Bootstarpのクラスで、アイコンフォントを出力する。(あらかじめ用意されたものの中からアイコンを選んで表示する機能)-->
+            <!--今回はクラス解除して、linkとして指定している-->
+           <% if user_signed_in? %>
+            <li>
+              <span>
+               <i class="fas fa-home" style="color: White;" ></i>
+              </span>
+               <%= link_to "Home",user_path(current_user),class:"link" %>
+
+              <span>
+                <i class="fas fa-users" style="color: White;" ></i>
+              </span>
+               <%= link_to "Users", users_path,class:"link" %>
+
+              <span>
+              <i class="fas fa-book-open" style="color: White;"></i>
+              </span>
+               <%= link_to "Books", "/books",class:"link" %>
+
+            <span>
+              <i class="fas fa-sign-out-alt" style="color: White;"></i>
+            </span>
+
+              <%= link_to "Log out", destroy_user_session_path,class:"link",method: :delete %>
+               <%#= link_to"Log out", "/users/log_out",class:"link",method: :delete %>
+           <span>
+             <i class="fas fa-chevron-circle-right"></i>
+             </span>
+            </li>
+
+          <% else %>
+
+           <span>
+              <i class="fas fa-home" style="color: White;"></i>
+            </span>
+            <%= link_to"Home",root_path,  class:"link"  %>
+
+           <span>
+             <i class="fas fa-link" style="color: White;"></i>
+            </span>
+            <%= link_to "About","/home/about",class:"link" %>
+
+
+            <span>
+             <i class="fas fa-user-plus" style="color: White;"></i>
+             </span>
+             <%= link_to"Sign up", "/users/sign_up",class:"link" %>
+
+             <span>
+             <i class="fas fa-sign-in-alt" style="color: White;"></i>
+            </span>
+            <%= link_to"Log in", "/users/sign_in",  class:"link" %>
+          <% end %>
+        </ul>
+       </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class= "body">
+
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+  </div>
+
+ <%= yield %>
+
+<footer>
+<div class="container mt-5">
+  	<div class="row">
+    	<div class="text-center">
+    		<p>CopyRight Infratop.inc</p>
+    	</div>
+    </div>
+  </div>
+  </footer>
