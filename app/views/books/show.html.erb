@@ -1,6 +1,4 @@
 <!--投稿後に飛んでくるbook_detailページ-->
-
-<h4>Books#show</h4>
 <!--現在ログイン中のユーザーかつ、投稿者であればデータを編集・消去できるようにする-->
 <% if @new_book.errors.any? %>
          <h4><%= @new_book.errors.count %>errors prohibited this book from being saved.</h4>
